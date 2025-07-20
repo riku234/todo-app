@@ -1,26 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Suspense, lazy } from 'react';
+import { TodoProvider } from './contexts/TodoContext';
+import { ErrorBoundary } from './components/common';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+// 遅延読み込みコンポーネント
+const MainLayout = lazy(() => import('./components/layout/MainLayout'));
+
+// ローディングコンポーネント
+const LoadingSpinner: React.FC = () => (
+  <div className="app-loading">
+    <div className="app-loading__content">
+      <div className="app-loading__spinner"></div>
+      <p>アプリケーションを読み込み中...</p>
     </div>
+  </div>
+);
+
+const App: React.FC = () => {
+  return (
+    <ErrorBoundary>
+      <TodoProvider>
+        <div className="app">
+          <Suspense fallback={<LoadingSpinner />}>
+            <MainLayout />
+          </Suspense>
+        </div>
+      </TodoProvider>
+    </ErrorBoundary>
   );
-}
+};
 
 export default App;

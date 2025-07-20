@@ -1,0 +1,171 @@
+/* Card Base */
+.card {
+  background-color: #ffffff;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  transition: all 0.2s ease-in-out;
+  position: relative;
+}
+
+/* Card Variants */
+.card--default {
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+}
+
+.card--elevated {
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.card--elevated:hover:not(.card--disabled) {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  transform: translateY(-2px);
+}
+
+.card--outlined {
+  border: 2px solid #e5e7eb;
+  box-shadow: none;
+}
+
+.card--outlined:hover:not(.card--disabled) {
+  border-color: #d1d5db;
+}
+
+.card--filled {
+  background-color: #f9fafb;
+  border: 1px solid #e5e7eb;
+  box-shadow: none;
+}
+
+.card--filled:hover:not(.card--disabled) {
+  background-color: #f3f4f6;
+}
+
+/* Card Sizes */
+.card--small {
+  padding: 1rem;
+}
+
+.card--medium {
+  padding: 1.5rem;
+}
+
+.card--large {
+  padding: 2rem;
+}
+
+/* Card Sections */
+.card__header {
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.card__header:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.card__body {
+  flex: 1;
+}
+
+.card__footer {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e5e7eb;
+}
+
+.card__footer:first-child {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: none;
+}
+
+/* Clickable Card */
+.card--clickable {
+  cursor: pointer;
+  user-select: none;
+}
+
+.card--clickable:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+.card--clickable:focus:not(:focus-visible) {
+  outline: none;
+}
+
+.card--clickable:hover:not(.card--disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+/* Disabled Card */
+.card--disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.card--disabled:hover {
+  transform: none !important;
+  box-shadow: inherit !important;
+}
+
+/* Card with Header and Footer */
+.card:has(.card__header) {
+  padding: 0;
+}
+
+.card:has(.card__header) .card__header {
+  padding: 1.5rem 1.5rem 0 1.5rem;
+}
+
+.card:has(.card__header) .card__body {
+  padding: 0 1.5rem;
+}
+
+.card:has(.card__header) .card__footer {
+  padding: 0 1.5rem 1.5rem 1.5rem;
+}
+
+/* Card with only Header */
+.card:has(.card__header):not(:has(.card__footer)) .card__body {
+  padding: 0 1.5rem 1.5rem 1.5rem;
+}
+
+/* Card with only Footer */
+.card:has(.card__footer):not(:has(.card__header)) .card__body {
+  padding: 1.5rem 1.5rem 0 1.5rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .card--large {
+    padding: 1.5rem;
+  }
+  
+  .card:has(.card__header) .card__header {
+    padding: 1rem 1rem 0 1rem;
+  }
+  
+  .card:has(.card__header) .card__body {
+    padding: 0 1rem;
+  }
+  
+  .card:has(.card__header) .card__footer {
+    padding: 0 1rem 1rem 1rem;
+  }
+  
+  .card:has(.card__header):not(:has(.card__footer)) .card__body {
+    padding: 0 1rem 1rem 1rem;
+  }
+  
+  .card:has(.card__footer):not(:has(.card__header)) .card__body {
+    padding: 1rem 1rem 0 1rem;
+  }
+} 
